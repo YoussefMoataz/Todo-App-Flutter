@@ -4,14 +4,25 @@ import 'package:todo_app_flutter/core/input_fields/input_fields_cubit.dart';
 import 'package:todo_app_flutter/core/todo_list/todo_list_cubit.dart';
 import 'package:todo_app_flutter/routing.dart';
 
-class AddPage extends StatelessWidget {
-  AddPage({super.key});
+import '../../domain/todo.dart';
+
+class EditPage extends StatelessWidget {
+  int index;
+  late Todo todo;
+
+  EditPage({super.key, required this.index});
 
   @override
   Widget build(BuildContext context) {
+    todo = context.read<TodoListCubit>().todos[index];
+    context.read<InputFieldsCubit>().onTitleInputChanged(todo.title);
+    context
+        .read<InputFieldsCubit>()
+        .onDescriptionInputChanged(todo.description);
+
     return Scaffold(
       appBar: AppBar(
-        title: Text("Add page"),
+        title: Text("Edit page"),
         leading: IconButton(
           onPressed: () {
             Routing.router.pop();
@@ -67,7 +78,9 @@ class AddPage extends StatelessWidget {
               context.read<InputFieldsCubit>().titleInputController.text;
           final description =
               context.read<InputFieldsCubit>().descriptionInputController.text;
-          context.read<TodoListCubit>().insertTodo(title, description);
+          todo.title = title;
+          todo.description = description;
+          context.read<TodoListCubit>().updateTodo(index, todo);
           Routing.router.pop();
         },
         child: Icon(Icons.check),
