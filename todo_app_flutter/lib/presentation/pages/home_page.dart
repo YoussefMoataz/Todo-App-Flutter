@@ -18,7 +18,7 @@ class HomePage extends StatelessWidget {
               onPressed: () {
                 context.read<ThemeCubit>().toggleTheme();
               },
-              icon: Icon(Icons.dark_mode))
+              icon: Icon(Icons.dark_mode_rounded))
         ],
       ),
       body: SizedBox(

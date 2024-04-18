@@ -9,6 +9,10 @@ class AddPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+
+    context.read<InputFieldsCubit>().onTitleInputChanged("");
+    context.read<InputFieldsCubit>().onDescriptionInputChanged("");
+
     return Scaffold(
       appBar: AppBar(
         title: Text("Add page"),
@@ -67,8 +71,12 @@ class AddPage extends StatelessWidget {
               context.read<InputFieldsCubit>().titleInputController.text;
           final description =
               context.read<InputFieldsCubit>().descriptionInputController.text;
-          context.read<TodoListCubit>().insertTodo(title, description);
-          Routing.router.pop();
+          context
+              .read<TodoListCubit>()
+              .insertTodo(title, description)
+              .then((_) {
+            Routing.router.pop();
+          });
         },
         child: Icon(Icons.check),
       ),

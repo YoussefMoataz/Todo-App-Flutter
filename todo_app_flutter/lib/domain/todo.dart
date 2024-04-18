@@ -1,21 +1,13 @@
+import 'package:floor/floor.dart';
+
+@Entity(tableName: "todo")
 class Todo {
-  static int _id = 0;
-  int id = 0;
+
+  @PrimaryKey(autoGenerate: true)
+  int? id;
   String title;
   String description;
-  bool isFinished = false;
 
-  Todo({required this.title, required this.description}) {
-    _id++;
-    id = _id;
-  }
-
-  void finish() {
-    isFinished = true;
-  }
-
-  void unFinish() {
-    isFinished = false;
-  }
+  Todo({this.id, required this.title, required this.description});
 
 }

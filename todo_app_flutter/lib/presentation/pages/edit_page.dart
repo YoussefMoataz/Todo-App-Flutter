@@ -29,6 +29,13 @@ class EditPage extends StatelessWidget {
           },
           icon: Icon(Icons.arrow_back_rounded),
         ),
+        actions: [
+          IconButton(onPressed: () {
+            context.read<TodoListCubit>().deleteTodo(todo).then((value) {
+              Routing.router.pop();
+            });
+          }, icon: Icon(Icons.delete_rounded))
+        ],
       ),
       body: SizedBox(
         width: double.infinity,
@@ -80,8 +87,9 @@ class EditPage extends StatelessWidget {
               context.read<InputFieldsCubit>().descriptionInputController.text;
           todo.title = title;
           todo.description = description;
-          context.read<TodoListCubit>().updateTodo(index, todo);
-          Routing.router.pop();
+          context.read<TodoListCubit>().updateTodo(todo).then((value) {
+            Routing.router.pop();
+          });
         },
         child: Icon(Icons.check),
       ),
