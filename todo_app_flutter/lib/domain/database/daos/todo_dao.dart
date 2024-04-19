@@ -1,12 +1,15 @@
 import 'package:floor/floor.dart';
 
-import '../../domain/todo.dart';
+import '../../models/todo.dart';
+
 
 @dao
-abstract class TodoDao{
-
+abstract class TodoDao {
   @Query("SELECT * FROM todo")
   Future<List<Todo>> getAllTodos();
+
+  @Query("SELECT * FROM todo where id = :id")
+  Future<Todo?> getTodo(int id);
 
   @insert
   Future<void> insertTodo(Todo todo);
@@ -16,5 +19,4 @@ abstract class TodoDao{
 
   @delete
   Future<void> deleteTodo(Todo todo);
-
 }

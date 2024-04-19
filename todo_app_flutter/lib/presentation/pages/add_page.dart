@@ -9,7 +9,6 @@ class AddPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-
     context.read<InputFieldsCubit>().onTitleInputChanged("");
     context.read<InputFieldsCubit>().onDescriptionInputChanged("");
 
