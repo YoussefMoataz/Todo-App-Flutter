@@ -39,12 +39,35 @@ class EditPage extends StatelessWidget {
               actions: [
                 IconButton(
                     onPressed: () {
-                      context
-                          .read<TodoListCubit>()
-                          .deleteTodo(todo!)
-                          .then((value) {
-                        Routing.router.pop();
-                      });
+                      showDialog(
+                        context: context,
+                        builder: (context) {
+                          return AlertDialog(
+                            title: Text("Delete todo"),
+                            content: Text("Are you sure ?"),
+                            actions: [
+                              TextButton(
+                                onPressed: () {
+                                  Navigator.of(context).pop();
+                                },
+                                child: Text("Cancel"),
+                              ),
+                              TextButton(
+                                onPressed: () {
+                                  context
+                                      .read<TodoListCubit>()
+                                      .deleteTodo(todo!)
+                                      .then((value) {
+                                    Navigator.of(context).pop();
+                                    Routing.router.pop();
+                                  });
+                                },
+                                child: Text("Yes"),
+                              ),
+                            ],
+                          );
+                        },
+                      );
                     },
                     icon: Icon(Icons.delete_rounded))
               ],
