@@ -38,11 +38,25 @@ class MyApp extends StatelessWidget {
               colorScheme: ColorScheme.fromSeed(
                   brightness: Brightness.light, seedColor: Colors.deepPurple),
               useMaterial3: true,
+              pageTransitionsTheme: const PageTransitionsTheme(
+                builders: <TargetPlatform, PageTransitionsBuilder>{
+                  TargetPlatform.android: ZoomPageTransitionsBuilder(
+                    allowEnterRouteSnapshotting: false,
+                  ),
+                },
+              ),
             ),
             darkTheme: ThemeData(
               colorScheme: ColorScheme.fromSeed(
                   brightness: Brightness.dark, seedColor: Colors.deepOrange),
               useMaterial3: true,
+              pageTransitionsTheme: const PageTransitionsTheme(
+                builders: <TargetPlatform, PageTransitionsBuilder>{
+                  TargetPlatform.android: ZoomPageTransitionsBuilder(
+                    allowEnterRouteSnapshotting: false,
+                  ),
+                },
+              ),
             ),
             themeMode: state.isSystem
                 ? ThemeMode.system

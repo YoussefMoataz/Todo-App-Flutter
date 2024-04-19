@@ -17,7 +17,7 @@ class TodoItem extends StatelessWidget {
           borderRadius: BorderRadius.circular(8),
         ),
         child: InkWell(
-          hoverDuration: Duration(microseconds: 100),
+          // hoverDuration: Duration(microseconds: 100),
           borderRadius: BorderRadius.circular(8),
           child: Padding(
             padding: EdgeInsets.all(10),
@@ -39,9 +39,9 @@ class TodoItem extends StatelessWidget {
             ),
           ),
           onTap: () {
-            Future.delayed(Duration(milliseconds: 100), () {
+            // Future.delayed(Duration(milliseconds: 300), () {
               Routing.router.push("/edit", extra: item.id);
-            });
+            // });
           },
         ),
       ),
